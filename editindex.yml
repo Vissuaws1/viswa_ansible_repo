@@ -1,0 +1,9 @@
+---
+- name: Editing index.html
+  copy:
+    src: "{{e}}"
+    dest: "{{f}}"
+      
+
+
+...

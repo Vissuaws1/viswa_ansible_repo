@@ -1,0 +1,9 @@
+---
+- name: Modifying the index.html file
+  copy:
+    content: "Welcome to the Ansible playbooks with include module"
+    dest: /var/www/html/index.html
+
+
+
+...

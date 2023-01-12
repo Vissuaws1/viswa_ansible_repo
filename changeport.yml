@@ -1,0 +1,8 @@
+---
+- name: Change tomcat port
+  replace:
+    regexp: "{{g}}"
+    replace: "{{h}}"
+    path: "{{i}}"
+
+...

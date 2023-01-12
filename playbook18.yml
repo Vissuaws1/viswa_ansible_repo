@@ -1,0 +1,7 @@
+---
+- name : creating the child playbook for user creation
+  user : 
+   name: asha
+   password: asha
+   uid : 1234
+...

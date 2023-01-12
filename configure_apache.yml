@@ -1,0 +1,15 @@
+---
+- name: Configuring the apache server by calling the child play books
+  hosts: all
+  tasks: 
+    - name: setup apache server
+      include: "{{item}}"
+
+      with_items:  
+        - install_apache.yml
+        - modify_index_html.yml
+        - restart_apache.yml
+        - check_url_response.yml 
+
+
+...

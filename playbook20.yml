@@ -1,0 +1,14 @@
+---
+- name: Implementing when condition
+  hosts: all
+  vars:
+    - a: 20
+  tasks:
+    - name: inatall tree
+      apt: 
+        name: tree
+        state: present
+        update_cache: yes
+      when: a == 10
+
+...

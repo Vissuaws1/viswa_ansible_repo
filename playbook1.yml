@@ -1,0 +1,13 @@
+---
+- name: Creating the User
+  hosts: all
+  tasks: 
+    - name: Creating a user
+      user:
+        name: anusha
+        password: anusha
+        uid: 1234
+        comment: "Generic User"
+        home: /home/anusha
+        shell: /bin/bash
+...

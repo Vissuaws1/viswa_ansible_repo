@@ -1,0 +1,24 @@
+---
+- name: Implementing error handling 
+  hosts: all
+  tasks:
+  - block:     
+      - name: installing softwares using apt 
+        apt: 
+          name: tree
+          state: present
+          update_cache: yes
+
+    rescue:                   
+      - name: installing software using yum
+        yum:
+         name: yum
+         state: present
+         update_cache: yes
+       
+    always:
+      - name: Display output
+        debug:
+          msg: "software installation successfully"  
+
+...

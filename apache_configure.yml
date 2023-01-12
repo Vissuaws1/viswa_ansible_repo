@@ -1,0 +1,21 @@
+---
+- name: Configuring the apache software
+  hosts: all
+  tasks:
+    - name: Apache s/w installation by calling child playbooks 
+      include: "{{item}}"
+
+      with_items:
+      - install.yml
+      - editindex.yml
+      - changeport.yml
+      - pause.yml
+      - restart.yml
+      - urlresponse.yml
+
+
+      
+
+
+
+...

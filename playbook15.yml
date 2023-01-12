@@ -1,0 +1,45 @@
+---
+- name: Building the jenkins server
+  hosts: jenkinserver
+  tasks: 
+    - name: Creating the Jenkinsserver and installing the required softwares
+      apt:
+        name: "{{item.sftr}}"
+        state: "{{item.stte}}"
+        update_cache: yes
+      with_items:
+        - {sftr: git,stte: present}
+        - {sftr: maven,stte: present}    
+        - {sftr: openjdk-11-jdk,stte: present}
+    - name: Download the jenkins war file into jenkins server
+      get_url:
+        url: https://get.jenkins.io/war-stable/2.375.1/jenkins.war
+        dest: /home/ubuntu
+
+
+
+- name: Installing softwares on Dev and QA servers
+  hosts: servers
+  tasks: 
+   - name: Install tomcat 9  and tomcat9-admin 
+     apt: 
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+
+     with_items: 
+        - {a: tomcat9,b: present,c: yes}
+        - {a: tomcat9-admin,b: present,c: yes}
+   - name: copy tomcat-users.xml file
+     copy:
+        src: tomcat-users.xml
+        dest: /etc/tomcat9
+     notify: Restart tomcat9
+
+  handlers: 
+    - name: Restart tomcat9
+      service:
+        name: tomcat9
+        state: restarted    
+    
+...

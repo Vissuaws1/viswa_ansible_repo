@@ -1,0 +1,19 @@
+---
+- name: install softwares based on the OS type
+  hosts: all
+  tasks:
+    - name: install tree using apt 
+      apt:
+        name: tree
+        state: present
+        update_cache: yes
+      when: ansible_distribution== "Ubuntu"
+      
+    - name: Install tree software using yum
+      yum:
+        name: tree
+        state: present
+        update_cache: yes   
+      when: ansible_distribution == 'RedHat'
+
+...

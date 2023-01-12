@@ -1,0 +1,10 @@
+---
+- name: Install software's
+  hosts: all
+  tasks: 
+      - name: Install git s/w
+        apt:
+          name: "{{a}}"
+          state: "{{b}}"
+          update_cache: "{{c}}"
+...

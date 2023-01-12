@@ -1,0 +1,36 @@
+---
+- name: confiure Tomcat9 and Tomcat9-admin
+  hosts: all
+  tasks:
+    - name: Install Tomcat9
+      apt:
+         name: tomcat9
+         state: present
+         update_cache: yes
+    - name: Install Tomcat9-admin
+      apt:
+            name: tomcat9-admin
+            state: present
+            update_cache: yes
+    - name: copy tomcat-users.xml file 
+      copy: 
+        src: tomcat-users.xml
+        dest: /etc/tomcat9
+    - name: Change port of Tomcat 
+      replace :
+           regexp: 9090
+           replace: 9080
+           path: /etc/tomcat9/server.xml
+    - name: Restart Tomcat
+      service:
+         name: tomcat9
+         state: restarted
+    - name: Pause tomcat for 1 min
+      pause:
+        minutes: 1
+
+    - name: Check Tomcat url response
+      uri:
+        url: http://172.31.44.89:9080
+        status_code: 200
+...

@@ -1,0 +1,14 @@
+---
+- name : Creating a user with host scope variables i one server only
+  hosts : 172.31.34.159
+  tasks : 
+    - name : Craeae a user in one server
+      user : 
+          name : "{{a}}"
+          password : "{{b}}"
+          uid : "{{c}}"
+          comment : "{{d}}"
+          home : "{{e}}"
+          shell : "{{f}}"
+...            
+

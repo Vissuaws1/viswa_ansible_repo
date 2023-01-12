@@ -1,0 +1,19 @@
+---
+- name : Implementing Loops
+  hosts : all
+  tasks : 
+      - name : Install softwares
+        apt :
+          name : "{{item}}"
+          state : present
+          update_cache : yes
+        with_items:
+          - maven
+          - git
+          - tree
+          - openjdk-11-jdk
+          - apache2
+
+
+
+...

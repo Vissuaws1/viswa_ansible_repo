@@ -1,0 +1,10 @@
+---
+- name: Install softwares using hostScope variables
+  hosts: group1,group2
+  tasks:
+    - name: Installing softwares
+      apt: 
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+... 

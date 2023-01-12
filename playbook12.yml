@@ -1,0 +1,33 @@
+---
+- name : Creating multiple users using loops and copy files into user's home directory
+  hosts : all
+  tasks :
+    - name : Creating the  usres with loops
+      user :
+        name : "{{item.nme}}"
+        password : "{{item.pwd}}"
+        uid : "{{item.ud}}"
+        comment : "{{item.cmnt}}"
+        home : "{{item.hdir}}"
+        shell : "{{item.shl}}"
+
+      with_items : 
+           - {nme: sai,pwd: sai,ud: 3645,cmnt: "Sai user info",hdir: /home/sai,shl: /bin/bash}
+           - {nme: sai1,pwd: sai1,ud: 3405,cmnt: "Sai1 user info",hdir: /home/sai1,shl: /bin/bash}
+           - {nme: sai2,pwd: sai2,ud: 5445,cmnt: "Sai2 user info",hdir: /home/sai2,shl: /bin/bash}
+           - {nme: sai3,pwd: sai3,ud: 3825,cmnt: "Sai3 user info",hdir: /home/sai3,shl: /bin/bash}
+           - {nme: sai4,pwd: sai4,ud: 3815,cmnt: "Sai4 user info",hdir: /home/sai4,shl: /bin/bash}
+
+    - name : Copying the files into users home directory
+      copy :
+        src : "{{item.fl}}"
+        dest : "{{item.hdir}}"
+
+      with_items : 
+          - {fl: /etc/passwd,hdir: /home/sitha}
+          - {fl: /etc/passwd,hdir: /home/sitha1}
+          - {fl: /etc/passwd,hdir: /home/sitha2}
+          - {fl: /etc/passwd,hdir: /home/sitha3}
+          - {fl: /etc/passwd,hdir: /home/sitha4}
+
+...

@@ -1,0 +1,14 @@
+---
+- name: Check if a user is present or not
+  hosts: all
+  tasks: 
+    - name: change password of the uer if available
+      user:
+        name: reshma
+        password: vissud
+      when: 
+        state: present
+
+
+          
+...

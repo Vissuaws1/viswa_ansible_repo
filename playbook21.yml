@@ -1,0 +1,20 @@
+---
+- name: Check if a file file1 is exists or not
+  hosts: all
+  tasks: 
+    - name: check if the file is exists in the directory
+      stat: 
+        path: /home/ubuntu/filenew
+      register: a
+    - name: Dispaly the variable value
+      debug: 
+        var: a
+    - name: create folder if filenew is not present
+      file:
+        name: /home/ubuntu/filenew
+        state: directory
+      when: a.stat.exists == false    
+    
+
+
+...

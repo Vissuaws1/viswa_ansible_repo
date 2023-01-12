@@ -1,0 +1,20 @@
+---
+- name: Creating users and also files under user's home directories
+  hosts: all
+  tasks: 
+      - name : Creating the Users
+        user:
+          name: "{{uname}}"
+          password: "{{upwd}}"
+          uid: "{{uid}}"
+          home: "{{uhome}}"
+          comment: "{{ucomment}}"
+          shell: "{{ushell}}"
+      - name: Creating files under user home directories
+        file:
+          name: "{{fname}}"
+          state: "{{fstate}}"
+          mode: "{{fmode}}"
+          owner: "{{fowner}}"
+          group: "{{fgroup}}"
+...            
